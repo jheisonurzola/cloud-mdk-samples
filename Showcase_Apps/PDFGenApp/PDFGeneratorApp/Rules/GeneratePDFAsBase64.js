@@ -14,11 +14,11 @@ export default function GeneratePDF(context) {
 	
 	let pageProxy = context.getPageProxy();
 	let salesOrderHeader = pageProxy.binding;
-	let customer = salesOrderHeader.CustomerDetails;
+	let customer = salesOrderHeader.Customer;
 	// Get Sales Order Items
 	let sectionedTable = pageProxy.getControl("SectionedTable0");
 	let itemsTable = sectionedTable.getSection("SalesOrderItemsTable");
-	let salesOrderItems = itemsTable.binding;
+	let salesOrderItems = itemsTable.binding._array;
 	
 	// This is helper function to convert data buffer to native byte array
 	let _bufferToNativeArray = function (byteArray) {
@@ -38,9 +38,9 @@ export default function GeneratePDF(context) {
 	//Build the items table for the PDF content
 	var salesOrderItems_TableBody = [[ 'Product Name', 'Quantity', { text: "Net Amount", alignment: 'right' }]];
 	for (var i = 0; i < salesOrderItems.length; i++) {
-		var salesOrderItem = salesOrderItems.getItem(i);
+		var salesOrderItem = salesOrderItems[i];
 		var row = [
-			{ text: salesOrderItem.ProductDetails.Name, bold: true },
+			{ text: salesOrderItem.Product.Name, bold: true },
 			`${salesOrderItem.Quantity}${salesOrderItem.QuantityUnit}`,
 			{ text: context.formatCurrency(salesOrderItem.NetAmount, salesOrderItem.CurrencyCode), alignment: 'right' }
 		];

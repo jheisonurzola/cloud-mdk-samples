@@ -43,12 +43,12 @@
 					"Target": {
 						"Service": "/PDFGeneratorApp/Services/SampleService.service",
 						"EntitySet": "{@odata.readLink}/Items",
-						"QueryOptions": "$expand=ProductDetails"
+						"QueryOptions": "$expand=Product"
 					},
 					"ObjectCell": {
 						"PreserveIconStackSpacing": false,
-						"Title": "{ProductDetails/Name}",
-						"Subhead": "{ProductDetails/CategoryName}",
+						"Title": "{Product/Name}",
+						"Subhead": "{Product/CategoryName}",
 						"StatusText": "$(C, {NetAmount}, {CurrencyCode})",
 						"SubStatusText": "{Quantity}{QuantityUnit}"
 					}
@@ -60,6 +60,12 @@
 	],
 	"ToolBar": {
 		"Items": [
+			{
+				"_Type": "Control.Type.ToolbarItem",
+				"_Name": "GeneratePDFToolbarItem0",
+				"Caption": "$(L,GeneratePDFInlineToolbarItem_Label)",
+				"OnPress": "/PDFGeneratorApp/Rules/ViewPDF.js"
+			},
 			{
 				"_Type": "Control.Type.ToolbarItem",
 				"_Name": "GeneratePDFToolbarItem",
