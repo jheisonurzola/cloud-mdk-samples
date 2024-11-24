@@ -9,12 +9,12 @@
 				"Target": {
 					"Service": "/PDFGeneratorApp/Services/SampleService.service",
 					"EntitySet": "SalesOrderHeaders",
-					"QueryOptions": "$expand=CustomerDetails,Items"
+					"QueryOptions": "$expand=Customer,Items"
 				},
 				"ObjectCell": {
 					"PreserveIconStackSpacing": false,
-					"Title": "{CustomerDetails/FirstName} {CustomerDetails/LastName}",
-					"Subhead": "{SalesOrderId}",
+					"Title": "{Customer/FirstName} {Customer/LastName}",
+					"Subhead": "{SalesOrderID}",
 					"StatusText": "{LifeCycleStatusName}",
 					"SubstatusText": "$(C, {NetAmount}, {CurrencyCode})",
 					"OnPress":"/PDFGeneratorApp/Actions/NavToSalesOrder_Detail.action"
